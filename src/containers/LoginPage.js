@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-// import { authenticate } from '../actions/authActions';
+import { authenticate } from '../actions/authActions';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import { loginUser } from '../actions/sessionActions';
@@ -19,15 +19,15 @@ class LoginPage extends Component {
 			[name]: value
 		});
 	};
+
 	handleSubmit = (e) => {
 		e.preventDefault();
-		this.props.actions.loginUser(this.state.credentials);
-		// if (this.props.authenticate(this.state)) {
-		// 	this.props.history.push('/Profile');
-		// 	// window.alert('Thanks for logging in!');
-		// } else {
-		// 	window.alert('Something went wrong, please try again!');
-		// }
+		if (this.props.authenticate(this.state)) {
+			// this.props.history.push('/p');
+			// window.alert("You're Logged In!")
+		} else {
+			// window.alert("Sorry, something went wrong. Please try logging in again.")
+		}
 	};
 	render() {
 		return (
@@ -35,14 +35,14 @@ class LoginPage extends Component {
 				<form onSubmit={this.handleSubmit}>
 					<label>Please Log In</label>
 					<input
-						value={this.state.credentials.email}
+						value={this.state.email}
 						onChange={this.handleChange}
 						placeholder="Email"
 						name="email"
 						type="email"
 					/>
 					<input
-						value={this.state.credentials.password}
+						value={this.state.password}
 						onChange={this.handleChange}
 						placeholder="Password"
 						name="password"
@@ -61,4 +61,4 @@ const mapStateToProps = (state) => {
 	};
 };
 
-export default connect(null, mapDispatchToProps(LoginPage));
+export default (LoginPage = withRouter(connect(null, { authenticate })(LoginPage)));
