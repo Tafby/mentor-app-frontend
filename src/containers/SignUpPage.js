@@ -8,8 +8,6 @@ class SignUpPage extends Component {
 		super(props);
 		this.state = {
 			email: '',
-			first_name: '',
-			last_name: '',
 			password: ''
 		};
 	}
@@ -21,30 +19,26 @@ class SignUpPage extends Component {
 		});
 	};
 
+	handleSubmit = (event) => {
+		event.preventDefault();
+		if (this.props.signup(this.state)) {
+			// this.props.history.push('/user_profile');
+			// window.alert('Thank you for signing up!');
+		} else {
+			window.alert('An error occured while trying to create your account');
+		}
+	};
+
 	render() {
 		return (
 			<div>
-				<form>
+				<form onSubmit={this.handleSubmit}>
 					<input
 						value={this.state.email}
 						onChange={this.handleChange}
 						placeholder="Email"
 						name="email"
 						type="email"
-					/>
-					<input
-						value={this.state.first_name}
-						onChange={this.handleChange}
-						placeholder="First Name"
-						name="first_name"
-						type="text"
-					/>
-					<input
-						value={this.state.last_name}
-						onChange={this.handleChange}
-						placeholder="Last Name"
-						name="last_name"
-						type="text"
 					/>
 					<input
 						value={this.state.password}
@@ -63,10 +57,8 @@ class SignUpPage extends Component {
 const mapStateToProps = (state) => {
 	return {
 		email: state.email,
-		first_name: state.first_name,
-		last_name: state.last_name,
 		password: state.password
 	};
 };
 
-export default connect(mapStateToProps)(SignUpPage);
+export default (SignUpPage = withRouter(connect(mapStateToProps, { signup })(SignUpPage)));

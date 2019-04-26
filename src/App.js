@@ -5,6 +5,7 @@ import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
 import Home from './containers/Home';
 import MyAccount from './containers/MyAccount';
 import SignUpPage from './containers/SignUpPage';
+import LoginPage from './containers/LoginPage';
 
 function App() {
 	return (
@@ -24,12 +25,16 @@ function App() {
 						<li>
 							<Link to="/messages/">Messages</Link>
 						</li>
+						<li>
+							<Link to="/login/">Login</Link>
+						</li>
 					</ul>
 				</nav>
 
 				<Route path="/" exact component={Home} />
 				<Route path="/profile" exact component={MyAccount} />
 				<Route path="/signup" exact component={SignUpPage} />
+				<Route path="/login" exact component={LoginPage} />
 			</div>
 		</Router>
 	);
