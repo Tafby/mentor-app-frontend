@@ -31,44 +31,56 @@ export const logout = () => {
 };
 
 export const signup = (user) => {
-	const newUser = user;
 	return (dispatch) => {
-		return fetch(`https://localhost:3000/users`, {
-			method: 'POST',
-			headers: {
-				Accept: 'application/json',
-				'Content-Type': 'application/json'
-			},
-			body: JSON.stringify({ user: user })
-		})
-			.then((response) => response.json())
-			.then((jresp) => {
-				dispatch(
-					authenticate({
-						email: newUser.email,
-						first_name: newUser.first_name,
-						last_name: newUser.last_name,
-						password: newUser.password
-					})
-				);
+		return (
+			fetch(`http://localhost:3000/users`, {
+				method: 'POST',
+				headers: {
+					Accept: 'application/json',
+					'Content-Type': 'application/json'
+				},
+				body: JSON.stringify({ user: user })
 			})
-			.catch((errors) => {
-				dispatch(authFailure(errors));
-			});
+				// .then((response) => {
+				// 	if (!response.ok) {
+				// 		throw Error(response.statusText);
+				// 	}
+				// 	return response;
+				// })
+				.then((response) => response.json())
+				.then((userJson) => {
+					dispatch(
+						authenticate({
+							email: userJson.email,
+							password: userJson.password
+						})
+					);
+				})
+				.catch((errors) => {
+					dispatch(authFailure(errors));
+				})
+		);
 	};
 };
 
 export const authenticate = (credentials) => {
+	console.log('credentials', credentials);
 	return (dispatch) => {
 		dispatch(authRequest());
-		return fetch(`https://localhost:3000/users`, {
+		return fetch(`http://localhost:3000/user_token`, {
 			method: 'POST',
 			headers: {
 				'Content-Type': 'application/json'
 			},
 			body: JSON.stringify({ auth: credentials })
 		})
-			.then((res) => res.json())
+			.then((response) => {
+				if (!response.ok) {
+					throw Error(response.statusText);
+				}
+				return response;
+			})
+			.then((response) => response.json())
 			.then((response) => {
 				const token = response.jwt;
 				localStorage.setItem('token', token);
@@ -86,7 +98,7 @@ export const authenticate = (credentials) => {
 };
 
 export const getUser = (credentials) => {
-	const request = new Request(`https://localhost:3000/find_user`, {
+	const request = new Request(`http://localhost:3000/find_user`, {
 		method: 'POST',
 		headers: new Headers({
 			'Content-Type': 'application/json',
@@ -95,6 +107,12 @@ export const getUser = (credentials) => {
 		body: JSON.stringify({ user: credentials })
 	});
 	return fetch(request)
+		.then((response) => {
+			if (!response.ok) {
+				throw Error(response.statusText);
+			}
+			return response;
+		})
 		.then((response) => response.json())
 		.then((userJson) => {
 			return userJson;

@@ -6,6 +6,8 @@ import Home from './containers/Home';
 import MyAccount from './containers/MyAccount';
 import SignUpPage from './containers/SignUpPage';
 import LoginPage from './containers/LoginPage';
+import SearchMentors from './containers/SearchMentors';
+import Profile from './containers/Profile';
 
 function App() {
 	return (
@@ -32,7 +34,8 @@ function App() {
 				</nav>
 
 				<Route path="/" exact component={Home} />
-				<Route path="/profile" exact component={MyAccount} />
+				<Route path="/profile" exact component={Profile} />
+				<Route path="/search" exact component={SearchMentors} />
 				<Route path="/signup" exact component={SignUpPage} />
 				<Route path="/login" exact component={LoginPage} />
 			</div>

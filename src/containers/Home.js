@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import Info from '../components/Info';
 import SignupButton from '../components/SignUpButton';
-import SignUpPage from './SignUpPage';
 
 class Home extends Component {
 	render() {
@@ -9,7 +8,6 @@ class Home extends Component {
 			<div>
 				<Info />
 				<SignupButton />
-				{/* <SignUpPage /> */}
 			</div>
 		);
 	}

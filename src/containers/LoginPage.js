@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { authenticate } from '../actions/authActions';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
-import { loginUser } from '../actions/sessionActions';
+// import { loginUser } from '../actions/sessionActions';
 
 class LoginPage extends Component {
 	constructor(props) {
@@ -23,7 +23,8 @@ class LoginPage extends Component {
 	handleSubmit = (e) => {
 		e.preventDefault();
 		if (this.props.authenticate(this.state)) {
-			// this.props.history.push('/p');
+			this.props.history.push('/profile');
+			//TODO ADD ERROR HANDLING WHEN USER ISN"T LOGGED IN
 			// window.alert("You're Logged In!")
 		} else {
 			// window.alert("Sorry, something went wrong. Please try logging in again.")
@@ -55,10 +56,10 @@ class LoginPage extends Component {
 	}
 }
 
-const mapStateToProps = (state) => {
-	return {
-		isAuthenticating: state.auth.isAuthenticating
-	};
-};
+// const mapStateToProps = (state) => {
+// 	return {
+// 		isAuthenticating: state.auth.isAuthenticating
+// 	};
+// };
 
 export default (LoginPage = withRouter(connect(null, { authenticate })(LoginPage)));
