@@ -2,6 +2,20 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import { signup } from '../actions/authActions';
+import Form from 'react-bootstrap/Form';
+import Button from 'react-bootstrap/Button';
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
+import { Redirect } from 'react-router-dom';
+import Alert from 'react-bootstrap/Alert';
+
+const mapStateToProps = (state) => {
+	return {
+		isAuthenticated: state.auth.isAuthenticated,
+		currentUser: state.auth.currentUser,
+		errors: state.auth.errors
+	};
+};
 
 class SignUpPage extends Component {
 	constructor(props) {
@@ -21,44 +35,53 @@ class SignUpPage extends Component {
 
 	handleSubmit = (event) => {
 		event.preventDefault();
-		if (this.props.signup(this.state)) {
-			// this.props.history.push('/user_profile');
-			// window.alert('Thank you for signing up!');
-		} else {
-			window.alert('An error occured while trying to create your account');
-		}
+		this.props.signup(this.state);
 	};
 
 	render() {
+		if (this.props.isAuthenticated) {
+			return <Redirect to={`/profile/${this.props.currentUser.id}`} />;
+		}
+
 		return (
-			<div>
-				<form onSubmit={this.handleSubmit}>
-					<input
-						value={this.state.email}
-						onChange={this.handleChange}
-						placeholder="Email"
-						name="email"
-						type="email"
-					/>
-					<input
-						value={this.state.password}
-						onChange={this.handleChange}
-						placeholder="Password"
-						name="password"
-						type="password"
-					/>
-					<input type="submit" />
-				</form>
-			</div>
+			<Row>
+				<Col />
+				<Col>
+					{this.props.errors.length > 0 ? (
+						<Alert variant="danger">{this.props.errors.toString()}</Alert>
+					) : null}
+					<Form onSubmit={this.handleSubmit}>
+						<Form.Group controlId="formBasicEmail">
+							<Form.Label>Email address</Form.Label>
+							<Form.Control
+								value={this.state.email}
+								onChange={this.handleChange}
+								placeholder="Email"
+								name="email"
+								type="email"
+							/>
+							<Form.Text className="text-muted">We'll never share your email with anyone else.</Form.Text>
+						</Form.Group>
+
+						<Form.Group controlId="formBasicPassword">
+							<Form.Label>Password</Form.Label>
+							<Form.Control
+								value={this.state.password}
+								onChange={this.handleChange}
+								placeholder="Password"
+								name="password"
+								type="password"
+							/>
+						</Form.Group>
+						<Button variant="primary" type="submit">
+							Submit
+						</Button>
+					</Form>
+				</Col>
+				<Col />
+			</Row>
 		);
 	}
 }
 
-const mapStateToProps = (state) => {
-	return {
-		email: state.email,
-		password: state.password
-	};
-};
-
-export default (SignUpPage = withRouter(connect(mapStateToProps, { signup })(SignUpPage)));
+export default connect(mapStateToProps, { signup })(SignUpPage);
