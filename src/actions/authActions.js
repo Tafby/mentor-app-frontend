@@ -1,4 +1,4 @@
-import * as types from './actionTypes';
+import * as types from '../constants/actionTypes';
 
 const authRequest = () => {
 	return {
@@ -35,7 +35,6 @@ export const signup = (user) => {
 		return fetch(`http://localhost:3000/users`, {
 			method: 'POST',
 			headers: {
-				Accept: 'application/json',
 				'Content-Type': 'application/json'
 			},
 			body: JSON.stringify({ user: user })
@@ -47,7 +46,7 @@ export const signup = (user) => {
 				return response;
 			})
 			.then((response) => response.json())
-			.then((userJson) => {
+			.then((response) => {
 				dispatch(
 					authenticate({
 						email: user.email,

@@ -1,14 +1,16 @@
 import React, { Component } from 'react';
 import { fetchMentors } from '../actions/userActions';
 import { connect } from 'react-redux';
-import Mentor from '../components/Mentor';
+import MentorCardOnSearch from '../components/MentorCardOnSearch';
 
-class SearchMentors extends Component {
+// TODO: Should fetchMentors actually be fetchMentorships and make a request to "/mentorships"?
+// Note: If so, the mentorship serializer in Rails will need to return mentor details.
+
+class SearchUsersPage extends Component {
 	componentDidMount() {
-		// console.log('comp did mount', this.props.dispatch(fetchMentors()));
 		return this.props.dispatch(fetchMentors());
-		// console.log(props);
 	}
+
 	render() {
 		const { error, loading, mentors } = this.props;
 		console.log('mentors inside render', mentors);
@@ -22,7 +24,7 @@ class SearchMentors extends Component {
 			<React.Fragment>
 				{mentors.length > 0 ? (
 					mentors.map((mentor) => {
-						return <Mentor key={mentor.id} mentor={mentor} />;
+						return <MentorCardOnSearch key={mentor.id} mentor={mentor} />;
 					})
 				) : null}
 			</React.Fragment>
@@ -34,4 +36,4 @@ const mapStateToProps = (state) => ({
 	mentors: state.mentor.mentors
 });
 
-export default connect(mapStateToProps)(SearchMentors);
+export default connect(mapStateToProps)(SearchUsersPage);

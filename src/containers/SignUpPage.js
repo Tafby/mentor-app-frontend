@@ -51,7 +51,7 @@ class SignUpPage extends Component {
 						<Alert variant="danger">{this.props.errors.toString()}</Alert>
 					) : null}
 					<Form onSubmit={this.handleSubmit}>
-						<Form.Group controlId="formBasicEmail">
+						<Form.Group>
 							<Form.Label>Email address</Form.Label>
 							<Form.Control
 								value={this.state.email}
@@ -63,7 +63,7 @@ class SignUpPage extends Component {
 							<Form.Text className="text-muted">We'll never share your email with anyone else.</Form.Text>
 						</Form.Group>
 
-						<Form.Group controlId="formBasicPassword">
+						<Form.Group>
 							<Form.Label>Password</Form.Label>
 							<Form.Control
 								value={this.state.password}

@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import updateProfile from '../actions/updateProfile';
+import updateProfile from '../actions/userActions';
 
-class Account extends Component {
+class UserInfo extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
@@ -29,7 +29,7 @@ class Account extends Component {
 		return (
 			<div>
 				<form onSubmit={this.handleSubmit}>
-					<p>Give us some information about you! You're seeing the account page including the form</p>
+					<p>Give us some information about you! You're seeing the UserInfo page including the form</p>
 					<label>First Name</label>
 					<input type="text" name="first_name" value={this.state.first_name} onChange={this.handleChange} />
 					<label>Last Name</label>
@@ -50,4 +50,4 @@ const mapStateToProps = (state) => {
 		currentUser: state.auth.currentUser
 	};
 };
-export default connect(mapStateToProps, { updateProfile })(Account);
+export default connect(mapStateToProps, { updateProfile })(UserInfo);

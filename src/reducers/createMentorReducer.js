@@ -1,4 +1,4 @@
-import { CREATE_MENTORS_BEGIN, CREATE_MENTORS_SUCCESS, CREATE_MENTORS_FAILURE } from '../actions/fetchActions';
+import { CREATE_MENTORS_BEGIN, CREATE_MENTORS_SUCCESS, CREATE_MENTORS_FAILURE } from '../constants/fetchActionTypes';
 
 const initialState = {
 	loading: false,
@@ -14,7 +14,6 @@ export default function mentorReducer(state = initialState, action) {
 				error: null
 			};
 		case CREATE_MENTORS_SUCCESS:
-			// console.log('CREATE mentors success', action.payload);
 			return {
 				...state,
 				loading: false

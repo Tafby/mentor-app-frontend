@@ -2,10 +2,10 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import ListGroup from 'react-bootstrap/ListGroup';
 // import Button from 'react-bootstrap/Button';
-import { fetchMentorships } from '../actions/mentorshipActions';
+import { fetchMentorships, updateMentorshipStatus } from '../actions/mentorshipActions';
 import Button from 'react-bootstrap/Button';
 
-class MentorShips extends Component {
+class MentorshipsDisplay extends Component {
 	constructor(props) {
 		super(props);
 		// this.props.fetchMentorships();
@@ -16,7 +16,7 @@ class MentorShips extends Component {
 		this.props.fetchMentorships();
 		console.log('Component MentorShips mounted');
 	}
-	handleClick = (mentorshiop_id, status) => {
+	handleClick = (mentorship_id, status) => {
 		this.props.updateMentorshipStatus(mentorship_id, status);
 	};
 
@@ -27,7 +27,7 @@ class MentorShips extends Component {
 					return (
 						<ListGroup.Item>
 							{`${mentorship.mentee.first_name} ${mentorship.mentee.last_name}`}{' '}
-							{mentorship.status == 'Accepted' ? (
+							{mentorship.status === 'Accepted' ? (
 								<small>mentoring since {mentorship.created_at}</small>
 							) : (
 								<Button onClick={() => this.handleClick(mentorship.id, 'Accepted')} size="sm">
@@ -41,7 +41,9 @@ class MentorShips extends Component {
 		);
 	}
 }
+
 const mapStateToProps = (state) => ({
 	mentorships: state.mentorships.mentorships
 });
-export default connect(mapStateToProps, { fetchMentorships })(MentorShips);
+
+export default connect(mapStateToProps, { fetchMentorships, updateMentorshipStatus })(MentorshipsDisplay);

@@ -1,4 +1,4 @@
-import { UPDATE_PROFILE_BEGIN, UPDATE_PROFILE_SUCCESS, UPDATE_PROFILE_FAILURE } from '../actions/fetchActions';
+import { UPDATE_PROFILE_BEGIN, UPDATE_PROFILE_SUCCESS, UPDATE_PROFILE_FAILURE } from '../constants/fetchActionTypes';
 
 const initialState = {
 	first_name: '',

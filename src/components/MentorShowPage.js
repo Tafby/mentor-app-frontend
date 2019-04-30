@@ -5,7 +5,7 @@ import Card from 'react-bootstrap/Card';
 import Button from 'react-bootstrap/Button';
 import { requestMentorship } from '../actions/mentorshipActions';
 
-class MentorCard extends Component {
+class MentorShowPage extends Component {
 	handleClick = () => {
 		console.log(
 			'IN MENTOR CARD',
@@ -13,10 +13,7 @@ class MentorCard extends Component {
 			'CURRENT USER',
 			this.props.location.state.currentUser.id
 		);
-		return this.props.requestMentorship(
-			this.props.location.state.mentor.id,
-			this.props.location.state.currentUser.id
-		);
+		return this.props.requestMentorship(this.props.location.state.mentor.id);
 	};
 	render() {
 		return (
@@ -43,4 +40,4 @@ class MentorCard extends Component {
 	}
 }
 
-export default connect(null, { requestMentorship })(MentorCard);
+export default connect(null, { requestMentorship })(MentorShowPage);

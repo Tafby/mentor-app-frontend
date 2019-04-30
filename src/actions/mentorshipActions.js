@@ -4,8 +4,10 @@ import {
 	requestMentorshipFailure,
 	fetchMentorShipsBegin,
 	fetchMentorShipsSuccess,
-	fetchMentorShipsFailure
-} from './fetchActions';
+	fetchMentorShipsFailure,
+	updateMentorshipStatusSuccess,
+	updateMentorshipStatusFailure
+} from './fetchActionMessages';
 
 export function handleErrors(response) {
 	if (!response.ok) {
@@ -13,8 +15,8 @@ export function handleErrors(response) {
 	}
 	return response;
 }
-export function requestMentorship(data, currentUserId) {
-	console.log('This is data inside updateProfile function', data, currentUserId);
+
+export function requestMentorship(data) {
 	return (dispatch) => {
 		dispatch(requestMentorshipBegin());
 		return fetch(`http://localhost:3000/mentorships`, {
@@ -26,9 +28,7 @@ export function requestMentorship(data, currentUserId) {
 			body: JSON.stringify({
 				mentorships: {
 					category_id: 1,
-					mentor_id: data,
-					mentee_id: currentUserId,
-					status: 'pending'
+					mentor_id: data
 				}
 			})
 		})
@@ -64,23 +64,25 @@ export function fetchMentorships() {
 			.catch((error) => dispatch(fetchMentorShipsFailure(error)));
 	};
 }
+
 export function updateMentorshipStatus(id, status) {
 	return (dispatch) => {
 		return fetch(`http://localhost:3000/mentorships/${id}`, {
+			method: 'PATCH',
 			headers: {
 				'Content-Type': 'application/json',
 				Authorization: `Bearer ${localStorage.token}`
 			},
 			body: JSON.stringify({
-				status: status
+				mentorships: {
+					status: status
+				}
 			})
 		})
 			.then(handleErrors)
 			.then((res) => res.json())
 			.then((json) => {
-				console.log('the MENTORSHIPS ', json);
-				dispatch(updateMentorshipStatusSuccess(json));
-				return json;
+				dispatch(fetchMentorships());
 			})
 			.catch((error) => dispatch(updateMentorshipStatusFailure(error)));
 	};

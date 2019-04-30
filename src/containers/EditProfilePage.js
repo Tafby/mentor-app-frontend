@@ -1,14 +1,14 @@
 import React, { Component } from 'react';
-import MentorTab from '../components/MentorTab';
-import MentorShips from '../components/MentorShips';
+import MentorInfoDisplay from '../components/MentorInfoDisplay';
 import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
 import Container from 'react-bootstrap/Container';
 import Card from 'react-bootstrap/Card';
+import MentorshipsDisplay from '../components/MentorshipsDisplay';
 
-import MyAccount from './MyAccount';
+import UserInfo from '../components/UserInfo';
 
-class EditProfile extends Component {
+class EditProfilePage extends Component {
 	render() {
 		return (
 			<Container>
@@ -16,7 +16,7 @@ class EditProfile extends Component {
 					<Col>
 						<Card>
 							My Account Info
-							<MyAccount />
+							<UserInfo />
 						</Card>
 						<br />
 					</Col>
@@ -25,7 +25,7 @@ class EditProfile extends Component {
 					<Col>
 						<Card>
 							My Mentor Profile Info
-							<MentorTab />
+							<MentorInfoDisplay />
 						</Card>
 						<br />
 					</Col>
@@ -34,7 +34,7 @@ class EditProfile extends Component {
 					<Col>
 						<Card>
 							My MentorShips
-							<MentorShips />
+							<MentorshipsDisplay />
 						</Card>
 						<br />
 					</Col>
@@ -44,4 +44,4 @@ class EditProfile extends Component {
 	}
 }
 
-export default EditProfile;
+export default EditProfilePage;

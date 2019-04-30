@@ -1,4 +1,4 @@
-import * as types from '../actions/actionTypes';
+import * as types from '../constants/actionTypes';
 const initialState = {
 	isAuthenticated: false,
 	isAuthenticating: false,
@@ -8,17 +8,13 @@ const initialState = {
 };
 
 export default (state = initialState, action) => {
-	// console.log('Current state:', state);
-	// console.log('Entering authReducer for action:', action);
 	switch (action.type) {
 		case types.AUTHENTICATION_REQUEST:
-			// console.log('In Auth Request action');
 			return {
 				...state,
 				isAuthenticating: true
 			};
 		case types.AUTHENTICATION_SUCCESS:
-			// console.log('In Auth Success action with user:', action.user, 'and token:', action.token);
 			return {
 				...state,
 				isAuthenticated: true,
@@ -28,7 +24,6 @@ export default (state = initialState, action) => {
 				token: action.token
 			};
 		case types.AUTHENTICATION_FAILURE:
-			// console.log('In Auth Failure action with errors:', action.errors);
 			return {
 				...state,
 				isAuthenticated: false,
@@ -46,7 +41,6 @@ export default (state = initialState, action) => {
 				token: null
 			};
 		default:
-			// console.log('In authReducer DEFAULT');
 			return state;
 	}
 };

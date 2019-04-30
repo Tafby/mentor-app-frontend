@@ -1,4 +1,4 @@
-import { FETCH_MENTORS_BEGIN, FETCH_MENTORS_SUCCESS, FETCH_MENTORS_FAILURE } from '../actions/fetchActions';
+import { FETCH_MENTORS_BEGIN, FETCH_MENTORS_SUCCESS, FETCH_MENTORS_FAILURE } from '../constants/fetchActionTypes';
 
 const initialState = {
 	mentors: [],

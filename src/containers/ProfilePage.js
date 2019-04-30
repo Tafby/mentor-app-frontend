@@ -4,15 +4,15 @@ import { connect } from 'react-redux';
 import Card from 'react-bootstrap/Card';
 import Button from 'react-bootstrap/Button';
 
-class Profile extends Component {
-	handleClick = (event) => {
-		event.preventDefault();
-	};
+class ProfilePage extends Component {
+	// TODO: Fetch a user using {this.props.match.params.id}
+	// TODO: Render the fetched user details, not current user
+	// TODO: Only render Edit link if the fetched user id === currentUser.id
 	render() {
 		return (
 			<div>
 				<Card style={{ width: '25rem' }}>
-					users_id: {this.props.currentUser.id} <Link to="/my-profile">Edit Profile</Link>
+					users_id: {this.props.currentUser.id} <Link to="/edit-profile">Edit Profile</Link>
 					<Card.Img variant="top" src="holder.js/100px180" />
 					<Card.Body>
 						<Card.Title>
@@ -34,4 +34,4 @@ const mapStateToProps = (state) => ({
 	currentUser: state.auth.currentUser
 });
 
-export default connect(mapStateToProps)(Profile);
+export default connect(mapStateToProps)(ProfilePage);

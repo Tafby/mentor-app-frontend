@@ -8,7 +8,7 @@ import Card from 'react-bootstrap/Card';
 import { connect } from 'react-redux';
 import { makingMentorProfile } from '../actions/userActions';
 
-class CreateMentorForm extends Component {
+class MentorInfoDisplay extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
@@ -77,4 +77,4 @@ const mapStateToProps = (state) => {
 		errors: state.createMentor.errors
 	};
 };
-export default connect(mapStateToProps, { makingMentorProfile })(CreateMentorForm);
+export default connect(mapStateToProps, { makingMentorProfile })(MentorInfoDisplay);
