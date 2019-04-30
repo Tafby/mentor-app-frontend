@@ -7,6 +7,7 @@ import Col from 'react-bootstrap/Col';
 import Card from 'react-bootstrap/Card';
 import { connect } from 'react-redux';
 import { makingMentorProfile } from '../actions/userActions';
+import Alert from 'react-bootstrap/Alert';
 
 class MentorInfoDisplay extends Component {
 	constructor(props) {
@@ -27,6 +28,7 @@ class MentorInfoDisplay extends Component {
 	handleSubmit = (event) => {
 		event.preventDefault();
 		this.props.makingMentorProfile(this.state);
+		return <Alert variant={'success'}>Added Mentor Profile Successfully </Alert>;
 	};
 	render() {
 		return (
@@ -47,7 +49,7 @@ class MentorInfoDisplay extends Component {
 							</Form.Group>
 
 							<Form.Group controlId="formBasicPassword">
-								<Form.Label>Description</Form.Label>
+								<Form.Label>Description of Mentorship</Form.Label>
 								<Form.Control
 									as="textarea"
 									rows="3"

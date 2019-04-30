@@ -29,7 +29,7 @@ class UserInfo extends Component {
 		return (
 			<div>
 				<form onSubmit={this.handleSubmit}>
-					<p>Give us some information about you! You're seeing the UserInfo page including the form</p>
+					<p>Fill out your profile</p>
 					<label>First Name</label>
 					<input type="text" name="first_name" value={this.state.first_name} onChange={this.handleChange} />
 					<label>Last Name</label>

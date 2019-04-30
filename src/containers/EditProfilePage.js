@@ -15,7 +15,7 @@ class EditProfilePage extends Component {
 				<Row>
 					<Col>
 						<Card>
-							My Account Info
+							Profile Information
 							<UserInfo />
 						</Card>
 						<br />

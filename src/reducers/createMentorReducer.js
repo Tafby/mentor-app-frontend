@@ -5,7 +5,7 @@ const initialState = {
 	error: null
 };
 
-export default function mentorReducer(state = initialState, action) {
+export default function createMentorReducer(state = initialState, action) {
 	switch (action.type) {
 		case CREATE_MENTORS_BEGIN:
 			return {

@@ -4,7 +4,8 @@ import mentorReducer from './mentorReducer';
 import createMentorReducer from './createMentorReducer';
 import updateReducer from './updateReducer';
 import mentorshipsReducer from './mentorshipsReducer';
-import { updateMentorshipStatus } from '../actions/mentorshipActions';
+import updateMentorshipStatusReducer from './updateMentorshipStatusReducer';
+import userReducer from './userReducer';
 
 const rootReducer = combineReducers({
 	auth: authReducer,
@@ -12,7 +13,8 @@ const rootReducer = combineReducers({
 	createMentor: createMentorReducer,
 	update: updateReducer,
 	mentorships: mentorshipsReducer,
-	updateMentorships: updateMentorshipStatus
+	updateMentorships: updateMentorshipStatusReducer,
+	userReducer: userReducer
 });
 
 export default rootReducer;

@@ -1,8 +1,4 @@
-import {
-	UPDATE_MENTORSHIP_STATUS_BEGIN,
-	UPDATE_MENTORSHIP_STATUS_SUCCESS,
-	UPDATE_MENTORSHIP_STATUS_FAILURE
-} from '../actions/fetchActionMessages';
+import { UPDATE_MENTORSHIP_STATUS_SUCCESS, UPDATE_MENTORSHIP_STATUS_FAILURE } from '../constants/fetchActionTypes';
 
 const initialState = {
 	mentorshipStatus: '',
@@ -10,8 +6,7 @@ const initialState = {
 	error: null
 };
 
-export default function mentorReducer(state = initialState, action) {
-	console.log('IN MENTORREDUCER', action);
+export default function updateMentorshipStatusReducer(state = initialState, action) {
 	switch (action.type) {
 		case UPDATE_MENTORSHIP_STATUS_SUCCESS:
 			console.log('fetch mentorships success', action.payload);

@@ -4,9 +4,14 @@ import Button from 'react-bootstrap/Button';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
+import { fetchUser } from '../actions/userActions';
 
 class MentorCardOnSearch extends Component {
+	handleClick = (id) => {
+		this.props.fetchUser(id);
+	};
 	render() {
+		console.log('In MentorCardSearch', this.props.mentor);
 		return (
 			<Card style={{ width: '20rem' }}>
 				<Card.Body>
@@ -17,7 +22,7 @@ class MentorCardOnSearch extends Component {
 						Interests: {this.props.mentor.interests} | location: {this.props.mentor.location}
 					</Card.Text>
 					<Link to={`profile/${this.props.mentor.id}`}>
-						<Button>View Profile</Button>
+						<Button onClick={() => this.handleClick(this.props.mentor.id)}>View Profile</Button>
 					</Link>
 				</Card.Body>
 			</Card>
@@ -26,7 +31,8 @@ class MentorCardOnSearch extends Component {
 }
 
 const mapStateToProps = (state) => ({
-	currentUser: state.auth.currentUser
+	currentUser: state.auth.currentUser,
+	userInfo: state.userReducer.userInfo
 });
 
-export default connect(mapStateToProps)(MentorCardOnSearch);
+export default connect(mapStateToProps, { fetchUser })(MentorCardOnSearch);

@@ -10,7 +10,6 @@ import ProfilePage from './containers/ProfilePage';
 import SiteNavbar from './components/SiteNavbar';
 import { connect } from 'react-redux';
 import { getUser } from './actions/authActions';
-import MentorShowPage from './components/MentorShowPage';
 import Logout from './components/Logout';
 
 class App extends Component {
@@ -30,7 +29,6 @@ class App extends Component {
 				<Route path="/search" exact component={SearchUsersPage} />
 				<Route path="/signup" exact component={SignUpPage} />
 				<Route path="/login" exact component={LoginPage} />
-				<Route path="/mentor/:id" exact component={MentorShowPage} />
 				<Route path="/logout" exact component={Logout} />
 			</Router>
 		);

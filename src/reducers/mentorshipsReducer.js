@@ -10,8 +10,7 @@ const initialState = {
 	error: null
 };
 
-export default function mentorReducer(state = initialState, action) {
-	console.log('IN MENTORREDUCER', action);
+export default function mentorshipsReducer(state = initialState, action) {
 	switch (action.type) {
 		case FETCH_MENTORSHIPS_BEGIN:
 			return {
@@ -20,7 +19,6 @@ export default function mentorReducer(state = initialState, action) {
 				error: null
 			};
 		case FETCH_MENTORSHIPS_SUCCESS:
-			console.log('fetch mentorships success', action.payload);
 			return {
 				...state,
 				loading: false,

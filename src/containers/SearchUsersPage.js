@@ -13,7 +13,7 @@ class SearchUsersPage extends Component {
 
 	render() {
 		const { error, loading, mentors } = this.props;
-		console.log('mentors inside render', mentors);
+		console.log('mentors inside render', mentors, 'PROPS', this.props);
 		if (error) {
 			return <div>Error! {error.message}</div>;
 		}
@@ -24,6 +24,7 @@ class SearchUsersPage extends Component {
 			<React.Fragment>
 				{mentors.length > 0 ? (
 					mentors.map((mentor) => {
+						console.log('iterating through on the searchUsersPage', mentor);
 						return <MentorCardOnSearch key={mentor.id} mentor={mentor} />;
 					})
 				) : null}
