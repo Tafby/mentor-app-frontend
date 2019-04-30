@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-// import updateProfile from '../actions/updateProfile';
+import updateProfile from '../actions/updateProfile';
 
 class Account extends Component {
 	constructor(props) {
@@ -22,6 +22,7 @@ class Account extends Component {
 
 	handleSubmit = (event) => {
 		event.preventDefault();
+		this.props.updateProfile(this.state, this.props.currentUser);
 	};
 
 	render() {
@@ -44,12 +45,9 @@ class Account extends Component {
 	}
 }
 
-// const mapStateToProps = (state) => {
-// 	return {
-// 		first_name: this.state.first_name,
-// 		last_name: this.state.last_name,
-// 		location: this.state.location,
-// 		interests: this.state.interests
-// 	};
-// };
-export default connect(null)(Account);
+const mapStateToProps = (state) => {
+	return {
+		currentUser: state.auth.currentUser
+	};
+};
+export default connect(mapStateToProps, { updateProfile })(Account);

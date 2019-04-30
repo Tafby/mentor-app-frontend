@@ -1,25 +1,45 @@
 import React, { Component } from 'react';
 import MentorTab from '../components/MentorTab';
 import MentorShips from '../components/MentorShips';
-import Tab from 'react-bootstrap/Tab';
-import Tabs from 'react-bootstrap/Tabs';
+import Col from 'react-bootstrap/Col';
+import Row from 'react-bootstrap/Row';
+import Container from 'react-bootstrap/Container';
+import Card from 'react-bootstrap/Card';
+
 import MyAccount from './MyAccount';
 
 class EditProfile extends Component {
-	//TODO: CREATE TABS FOR EACH THING - MENTORTAB, MENTORSHIPSTAB, MYACCOUNTTAB
 	render() {
 		return (
-			<Tabs id="controlled-tab-example" onSelect={(key) => this.setState({ key })}>
-				<Tab eventKey="home" title="Account Info">
-					<MyAccount />
-				</Tab>
-				<Tab eventKey="profile" title="MentorShips">
-					<MentorShips />
-				</Tab>
-				<Tab eventKey="contact" title="Mentor">
-					<MentorTab />
-				</Tab>
-			</Tabs>
+			<Container>
+				<Row>
+					<Col>
+						<Card>
+							My Account Info
+							<MyAccount />
+						</Card>
+						<br />
+					</Col>
+				</Row>
+				<Row>
+					<Col>
+						<Card>
+							My Mentor Profile Info
+							<MentorTab />
+						</Card>
+						<br />
+					</Col>
+				</Row>
+				<Row>
+					<Col>
+						<Card>
+							My MentorShips
+							<MentorShips />
+						</Card>
+						<br />
+					</Col>
+				</Row>
+			</Container>
 		);
 	}
 }

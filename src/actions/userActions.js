@@ -10,7 +10,7 @@ import {
 export function fetchMentors() {
 	return (dispatch) => {
 		dispatch(fetchMentorsBegin());
-		return fetch('http://localhost:3000/mentor_profiles')
+		return fetch('http://localhost:3000/users')
 			.then(handleErrors)
 			.then((res) => res.json())
 			.then((json) => {
@@ -56,3 +56,17 @@ export function makingMentorProfile(mentorInfo) {
 			.catch((error) => dispatch(createMentorsFailure(error)));
 	};
 }
+// export function fetchMentorShips() {
+// 	return (dispatch) => {
+// 		dispatch(fetchMentorShipsBegin());
+// 		return fetch('http://localhost:3000/mentor_profiles')
+// 			.then(handleErrors)
+// 			.then((res) => res.json())
+// 			.then((json) => {
+// 				console.log('the fetchmentorships ', json);
+// 				dispatch(fetchMentorShipsSuccess(json));
+// 				return json;
+// 			})
+// 			.catch((error) => dispatch(fetchMentorShipsFailure(error)));
+// 	};
+// }

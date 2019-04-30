@@ -17,6 +17,8 @@ import Form from 'react-bootstrap/Form';
 import Nav from 'react-bootstrap/Nav';
 import { connect } from 'react-redux';
 import { getUser } from './actions/authActions';
+import MentorCard from './components/MentorCard';
+import Logout from './components/Logout';
 
 class App extends Component {
 	componentDidMount = () => {
@@ -26,7 +28,6 @@ class App extends Component {
 	};
 
 	render() {
-		console.log(this.props.currentUser);
 		return (
 			<Router>
 				<Navbar bg="light" expand="lg">
@@ -57,6 +58,8 @@ class App extends Component {
 				<Route path="/signup" exact component={SignUpPage} />
 				<Route path="/login" exact component={LoginPage} />
 				<Route path="/messages" exact component={Messages} />
+				<Route path="/mentor/:id" exact component={MentorCard} />
+				<Route path="/logout" exact component={Logout} />
 			</Router>
 		);
 	}

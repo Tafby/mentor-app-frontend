@@ -109,7 +109,7 @@ export const getUser = (token) => {
 			})
 			.then((response) => response.json())
 			.then((user) => {
-				console.log('Dispatching authSuccess with user:', user, 'and token:', localStorage.token);
+				// console.log('Dispatching authSuccess with user:', user, 'and token:', localStorage.token);
 				dispatch(authSuccess(user, localStorage.token));
 			})
 			.catch((errors) => {

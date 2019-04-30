@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import MentorShips from '../components/MentorShips';
 import { fetchMentors } from '../actions/userActions';
 import { connect } from 'react-redux';
 import Mentor from '../components/Mentor';
@@ -30,14 +29,6 @@ class SearchMentors extends Component {
 		);
 	}
 }
-
-// const mappingFunction = () => {
-// 	const { mentors } = this.props;
-// 	mentors.map((mentor) => {
-// 		console.log('MENTO YO', mentor);
-// 		return mentor;
-// 	});
-// };
 
 const mapStateToProps = (state) => ({
 	mentors: state.mentor.mentors

@@ -3,8 +3,7 @@ import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
-import { Redirect } from 'react-router-dom';
-import Alert from 'react-bootstrap/Alert';
+
 import Card from 'react-bootstrap/Card';
 import { connect } from 'react-redux';
 import { makingMentorProfile } from '../actions/userActions';
@@ -72,7 +71,7 @@ class CreateMentorForm extends Component {
 	}
 }
 const mapStateToProps = (state) => {
-	console.log('mapStateToProps with state:', state);
+	// console.log('mapStateToProps with state:', state);
 	return {
 		mentor: state.createMentor.mentor,
 		errors: state.createMentor.errors
