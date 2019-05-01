@@ -5,6 +5,8 @@ import Card from 'react-bootstrap/Card';
 import Button from 'react-bootstrap/Button';
 import { fetchUser } from '../actions/userActions';
 import { requestMentorship } from '../actions/mentorshipActions';
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
 
 class ProfilePage extends Component {
 	componentDidMount() {
@@ -25,25 +27,31 @@ class ProfilePage extends Component {
 	render() {
 		return (
 			<div>
-				<Card style={{ width: '25rem' }}>
-					{this.isUser() ? <Link to="/edit-profile">Edit Profile</Link> : null}
-					{/* <Card.Img variant="top" src="holder.js/100px180" /> */}
-					<Card.Body>
-						<Card.Title>
-							{this.props.user.first_name} {this.props.user.last_name}
-						</Card.Title>
-						<Card.Text>
-							Location: {this.props.user.location}
-							<br />
-							Interests: {this.props.user.interests}
-						</Card.Text>
-						{this.isUser() ? null : (
-							<Button onClick={this.handleClick} variant="primary">
-								Request Mentorship
-							</Button>
-						)}
-					</Card.Body>
-				</Card>
+				<Row>
+					<Col />
+					<Col>
+						<Card style={{ width: '25rem' }}>
+							{this.isUser() ? <Link to="/edit-profile">Edit Profile</Link> : null}
+							{/* <Card.Img variant="top" src="holder.js/100px180" /> */}
+							<Card.Body>
+								<Card.Title>
+									{this.props.user.first_name} {this.props.user.last_name}
+								</Card.Title>
+								<Card.Text>
+									Location: {this.props.user.location}
+									<br />
+									Interests: {this.props.user.interests}
+								</Card.Text>
+								{this.isUser() ? null : (
+									<Button onClick={this.handleClick} variant="primary">
+										Request Mentorship
+									</Button>
+								)}
+							</Card.Body>
+						</Card>
+					</Col>
+					<Col />
+				</Row>
 			</div>
 		);
 	}

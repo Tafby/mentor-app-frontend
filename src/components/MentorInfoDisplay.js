@@ -8,6 +8,7 @@ import Card from 'react-bootstrap/Card';
 import { connect } from 'react-redux';
 import { makingMentorProfile } from '../actions/userActions';
 import Alert from 'react-bootstrap/Alert';
+import { fetchCategories } from '../actions/categoryActions';
 
 class MentorInfoDisplay extends Component {
 	constructor(props) {
@@ -17,6 +18,12 @@ class MentorInfoDisplay extends Component {
 			descritpion: ''
 		};
 	}
+
+	//TODO: RENDER THE CATEGORIES IN A LIST, FORMAT DATE, Make it so that mentees don't see the accept button. if mentee, show pending until accepted?
+
+	// componentDidMount() {
+	// 	this.props.dispatch(fetchCategories());
+	// }
 
 	handleChange = (event) => {
 		const { name, value } = event.target;
@@ -31,21 +38,29 @@ class MentorInfoDisplay extends Component {
 		return <Alert variant={'success'}>Added Mentor Profile Successfully </Alert>;
 	};
 	render() {
+		console.log('CATEGORIES', this.props.categories);
 		return (
 			<Row>
 				<Col />
 				<Col>
-					<Card style={{ width: '18rem' }}>
+					<Card style={{ width: '25rem' }}>
 						<Form onSubmit={this.handleSubmit}>
-							<Form.Group controlId="formBasicEmail">
+							<Form.Group as={Col} controlId="formGridState">
 								<Form.Label>Category</Form.Label>
-								<Form.Control
-									value={this.state.category}
-									onChange={this.handleChange}
-									placeholder="Category"
-									name="category"
-									type="category"
-								/>
+								<Form.Control as="select">
+									<option>Choose...</option>
+									{this.props.categories.map((category) => {
+										return <option>{category}</option>;
+
+										// <Form.Control
+										// 	value={this.state.category}
+										// 	onChange={this.handleChange}
+										// 	placeholder="Category"
+										// 	name="category"
+										// 	type="category"
+										// />;
+									})}
+								</Form.Control>
 							</Form.Group>
 
 							<Form.Group controlId="formBasicPassword">
@@ -76,7 +91,8 @@ const mapStateToProps = (state) => {
 	// console.log('mapStateToProps with state:', state);
 	return {
 		mentor: state.createMentor.mentor,
-		errors: state.createMentor.errors
+		errors: state.createMentor.errors,
+		categories: state.categories.categories
 	};
 };
-export default connect(mapStateToProps, { makingMentorProfile })(MentorInfoDisplay);
+export default connect(mapStateToProps, { makingMentorProfile, fetchCategories })(MentorInfoDisplay);

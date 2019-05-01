@@ -10,6 +10,7 @@ class MentorCardOnSearch extends Component {
 	handleClick = (id) => {
 		this.props.fetchUser(id);
 	};
+
 	render() {
 		console.log('In MentorCardSearch', this.props.mentor);
 		return (
@@ -22,7 +23,13 @@ class MentorCardOnSearch extends Component {
 						Interests: {this.props.mentor.interests} | location: {this.props.mentor.location}
 					</Card.Text>
 					<Link to={`profile/${this.props.mentor.id}`}>
-						<Button onClick={() => this.handleClick(this.props.mentor.id)}>View Profile</Button>
+						<Button
+							style={{ backgroundColor: 'purple', color: 'white' }}
+							variant="flat"
+							onClick={() => this.handleClick(this.props.mentor.id)}
+						>
+							View Profile
+						</Button>
 					</Link>
 				</Card.Body>
 			</Card>

@@ -12,6 +12,8 @@ class MentorshipsDisplay extends Component {
 		// console.log('MENTORSHIPS IN MENTORSHIPS COMPONENT', this.props.mentorships);
 	}
 
+	//TODO: Create a link to the mentee's profile so the mentor can deteremine if they want to accept
+	//TODO: Add a reject button that will remove the mentorship and not allow that mentee to request again
 	componentDidMount() {
 		this.props.fetchMentorships();
 		console.log('Component MentorShips mounted');
@@ -22,7 +24,7 @@ class MentorshipsDisplay extends Component {
 
 	render() {
 		return (
-			<ListGroup style={{ width: '25rem' }}>
+			<ListGroup>
 				{this.props.mentorships.map((mentorship) => {
 					return (
 						<ListGroup.Item>

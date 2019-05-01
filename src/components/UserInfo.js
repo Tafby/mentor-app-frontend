@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import updateProfile from '../actions/userActions';
-
+// import Form from 'react-bootstrap/Form';
+// import Button from 'react-bootstrap/Button';
+// import Col from 'react-bootstrap/Col';
 class UserInfo extends Component {
 	constructor(props) {
 		super(props);
