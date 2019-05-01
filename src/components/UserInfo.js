@@ -1,9 +1,11 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import updateProfile from '../actions/userActions';
-// import Form from 'react-bootstrap/Form';
-// import Button from 'react-bootstrap/Button';
-// import Col from 'react-bootstrap/Col';
+import Form from 'react-bootstrap/Form';
+import Button from 'react-bootstrap/Button';
+import Col from 'react-bootstrap/Col';
+import Row from 'react-bootstrap/Row';
+import Alert from 'react-bootstrap/Alert';
 class UserInfo extends Component {
 	constructor(props) {
 		super(props);
@@ -29,20 +31,44 @@ class UserInfo extends Component {
 
 	render() {
 		return (
-			<div>
-				<form onSubmit={this.handleSubmit}>
-					<p>Fill out your profile</p>
-					<label>First Name</label>
-					<input type="text" name="first_name" value={this.state.first_name} onChange={this.handleChange} />
-					<label>Last Name</label>
-					<input value={this.state.last_name} name="last_name" onChange={this.handleChange} type="text" />
-					<label>Location</label>
-					<input value={this.state.location} name="location" onChange={this.handleChange} type="text" />
-					<label>Interests</label>
-					<input value={this.state.interests} name="interests" onChange={this.handleChange} type="text" />
-					<input type="submit" placeholder="Save Changes" />
-				</form>
-			</div>
+			<Form controlId="exampleForm.ControlInput1" onSubmit={this.handleSubmit}>
+				<p>Fill out your profile</p>
+				<Form.Label>First Name</Form.Label>
+				<Form.Control
+					type="text"
+					name="first_name"
+					value={this.state.first_name}
+					onChange={this.handleChange}
+					defaultValue={this.props.currentUser.first_name}
+				/>
+				<Form.Label>Last Name</Form.Label>
+				<Form.Control
+					value={this.state.last_name}
+					name="last_name"
+					onChange={this.handleChange}
+					type="text"
+					defaultValue={this.props.currentUser.last_name}
+				/>
+				<Form.Label>Location</Form.Label>
+				<Form.Control
+					value={this.state.location}
+					name="location"
+					onChange={this.handleChange}
+					type="text"
+					defaultValue={this.props.currentUser.location}
+				/>
+				<Form.Label>About me</Form.Label>
+				<Form.Control
+					value={this.state.interests}
+					name="interests"
+					onChange={this.handleChange}
+					type="textarea"
+					defaultValue={this.props.currentUser.interests}
+				/>
+				<Button type="submit" placeholder="Save Changes">
+					Save Changes
+				</Button>
+			</Form>
 		);
 	}
 }

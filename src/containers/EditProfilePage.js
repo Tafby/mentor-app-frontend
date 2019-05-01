@@ -14,28 +14,14 @@ class EditProfilePage extends Component {
 			<Container>
 				<Row>
 					<Col>
-						<Card>
-							Profile Information
-							<UserInfo />
-						</Card>
+						<b>Profile Information</b>
 						<br />
+						<UserInfo />
 					</Col>
-				</Row>
-				<Row>
+					<Col xs lg="2" />
 					<Col>
-						<Card>
-							My Mentor Profile Info
-							<MentorInfoDisplay />
-						</Card>
-						<br />
-					</Col>
-				</Row>
-				<Row>
-					<Col>
-						<Card>
-							My MentorShips
-							<MentorshipsDisplay />
-						</Card>
+						<b>My Mentor Profile Info</b>
+						<MentorInfoDisplay />
 						<br />
 					</Col>
 				</Row>

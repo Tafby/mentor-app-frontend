@@ -11,6 +11,7 @@ import SiteNavbar from './components/SiteNavbar';
 import { connect } from 'react-redux';
 import { getUser } from './actions/authActions';
 import Logout from './components/Logout';
+import MentorshipsDisplay from './components/MentorshipsDisplay';
 
 class App extends Component {
 	componentDidMount = () => {
@@ -30,6 +31,7 @@ class App extends Component {
 				<Route path="/signup" exact component={SignUpPage} />
 				<Route path="/login" exact component={LoginPage} />
 				<Route path="/logout" exact component={Logout} />
+				<Route path="/mentorships" exact component={MentorshipsDisplay} />
 			</Router>
 		);
 	}

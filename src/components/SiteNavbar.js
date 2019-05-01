@@ -14,6 +14,7 @@ export default class SiteNavbar extends Component {
 						<Nav className="mr-auto">
 							<Nav.Link href="/search">Search</Nav.Link>
 							<Nav.Link href={`/profile/${this.props.currentUser.id}`}>My Profile</Nav.Link>
+							<Nav.Link href={`/mentorships`}>My Mentorships</Nav.Link>
 						</Nav>
 					) : null}
 					<Form inline>

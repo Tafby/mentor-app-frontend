@@ -40,50 +40,42 @@ class MentorInfoDisplay extends Component {
 	render() {
 		console.log('CATEGORIES', this.props.categories);
 		return (
-			<Row>
-				<Col />
-				<Col>
-					<Card style={{ width: '25rem' }}>
-						<Form onSubmit={this.handleSubmit}>
-							<Form.Group as={Col} controlId="formGridState">
-								<Form.Label>Category</Form.Label>
-								<Form.Control as="select">
-									<option>Choose...</option>
-									{this.props.categories.map((category) => {
-										return <option>{category}</option>;
+			<Form onSubmit={this.handleSubmit}>
+				<Form.Group as={Col} controlId="formGridState">
+					<Form.Label>Category</Form.Label>
+					<Form.Control as="select">
+						<option>Choose...</option>
+						{this.props.categories.map((category) => {
+							return <option>{category}</option>;
 
-										// <Form.Control
-										// 	value={this.state.category}
-										// 	onChange={this.handleChange}
-										// 	placeholder="Category"
-										// 	name="category"
-										// 	type="category"
-										// />;
-									})}
-								</Form.Control>
-							</Form.Group>
+							// <Form.Control
+							// 	value={this.state.category}
+							// 	onChange={this.handleChange}
+							// 	placeholder="Category"
+							// 	name="category"
+							// 	type="category"
+							// />;
+						})}
+					</Form.Control>
+				</Form.Group>
 
-							<Form.Group controlId="formBasicPassword">
-								<Form.Label>Description of Mentorship</Form.Label>
-								<Form.Control
-									as="textarea"
-									rows="3"
-									value={this.state.description}
-									onChange={this.handleChange}
-									placeholder="Description"
-									name="description"
-									type="description"
-								/>
-							</Form.Group>
+				<Form.Group controlId="formBasicPassword">
+					<Form.Label>Description of Mentorship</Form.Label>
+					<Form.Control
+						as="textarea"
+						rows="3"
+						value={this.state.description}
+						onChange={this.handleChange}
+						placeholder="Description"
+						name="description"
+						type="description"
+					/>
+				</Form.Group>
 
-							<Button variant="primary" type="submit">
-								Activate
-							</Button>
-						</Form>
-					</Card>
-				</Col>
-				<Col />
-			</Row>
+				<Button variant="primary" type="submit">
+					Activate
+				</Button>
+			</Form>
 		);
 	}
 }

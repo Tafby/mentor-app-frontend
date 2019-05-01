@@ -7,7 +7,7 @@ class HomePage extends Component {
 	render() {
 		return (
 			<div>
-				<Jumbotron>
+				<Jumbotron style={{ textAlign: 'center' }}>
 					<h1>Welcome!</h1>
 					<p>INFORMATION ABOUT THIS WEBSITE GOES HERE</p>
 					<p>

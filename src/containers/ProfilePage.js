@@ -30,17 +30,17 @@ class ProfilePage extends Component {
 				<Row>
 					<Col />
 					<Col>
-						<Card style={{ width: '25rem' }}>
+						<Card border="info" style={{ width: '30rem' }}>
 							{this.isUser() ? <Link to="/edit-profile">Edit Profile</Link> : null}
 							{/* <Card.Img variant="top" src="holder.js/100px180" /> */}
 							<Card.Body>
-								<Card.Title>
+								<Card.Title style={{ textAlign: 'center' }}>
 									{this.props.user.first_name} {this.props.user.last_name}
 								</Card.Title>
-								<Card.Text>
+								<Card.Text style={{ textAlign: 'center' }}>
 									Location: {this.props.user.location}
 									<br />
-									Interests: {this.props.user.interests}
+									About Me: {this.props.user.interests}
 								</Card.Text>
 								{this.isUser() ? null : (
 									<Button onClick={this.handleClick} variant="primary">

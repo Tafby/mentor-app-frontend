@@ -12,9 +12,15 @@ class SearchUsersPage extends Component {
 		return this.props.dispatch(fetchMentors());
 	}
 
+	isUser() {
+		if (this.props.currentUser.id === this.props.user.id) {
+			return true;
+		}
+		return false;
+	}
+
 	render() {
 		const { error, loading, mentors } = this.props;
-		console.log('mentors inside render', mentors, 'PROPS', this.props);
 		if (error) {
 			return <div>Error! {error.message}</div>;
 		}
@@ -26,7 +32,6 @@ class SearchUsersPage extends Component {
 				{mentors.length > 0 ? (
 					mentors.map((mentor) => {
 						if (mentor.mentor_profiles.length > 0) {
-							console.log('iterating through on the searchUsersPage', mentor);
 							return <MentorCardOnSearch key={mentor.id} mentor={mentor} />;
 						}
 					})
@@ -37,7 +42,8 @@ class SearchUsersPage extends Component {
 }
 
 const mapStateToProps = (state) => ({
-	mentors: state.mentor.mentors
+	mentors: state.mentor.mentors,
+	currentUser: state.auth.currentUser
 });
 
 export default connect(mapStateToProps)(SearchUsersPage);

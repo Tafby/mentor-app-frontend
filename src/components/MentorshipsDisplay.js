@@ -22,15 +22,32 @@ class MentorshipsDisplay extends Component {
 		this.props.updateMentorshipStatus(mentorship_id, status);
 	};
 
+	isUser = (mentorship) => {
+		if (this.props.currentUser.id === mentorship.mentee.id) {
+			console.log(this.props.currentUser.id, mentorship.mentor.first_name);
+			return true;
+		}
+		return false;
+	};
+
 	render() {
 		return (
 			<ListGroup>
 				{this.props.mentorships.map((mentorship) => {
+					let dateToUse = new Date(mentorship.created_at);
+					console.log(dateToUse.toDateString());
 					return (
 						<ListGroup.Item>
-							{`${mentorship.mentee.first_name} ${mentorship.mentee.last_name}`}{' '}
+							{this.isUser(mentorship) ? (
+								`${mentorship.mentor.first_name} ${mentorship.mentor.last_name}`
+							) : (
+								`${mentorship.mentee.first_name} ${mentorship.mentee.last_name}`
+							)}
+							<br />
 							{mentorship.status === 'Accepted' ? (
-								<small>mentoring since {mentorship.created_at}</small>
+								<small>Mentorship started on: {dateToUse.toDateString()}</small>
+							) : mentorship.status === 'Rejected' ? null : this.isUser(mentorship) ? (
+								<small>Pending</small>
 							) : (
 								<Button onClick={() => this.handleClick(mentorship.id, 'Accepted')} size="sm">
 									Accept
@@ -45,7 +62,8 @@ class MentorshipsDisplay extends Component {
 }
 
 const mapStateToProps = (state) => ({
-	mentorships: state.mentorships.mentorships
+	mentorships: state.mentorships.mentorships,
+	currentUser: state.auth.currentUser
 });
 
 export default connect(mapStateToProps, { fetchMentorships, updateMentorshipStatus })(MentorshipsDisplay);
