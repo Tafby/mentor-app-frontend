@@ -19,11 +19,19 @@ class ProfilePage extends Component {
 	};
 
 	isUser() {
+		console.log(this.props.currentUser);
+
 		if (this.props.currentUser.id === this.props.user.id) {
 			return true;
 		}
 		return false;
 	}
+
+	// isPending = (mentorship) => {
+	// 	if (mentorship.status === 'Pending') {
+	// 		return true;
+	// 	}
+	// };
 	render() {
 		return (
 			<div>

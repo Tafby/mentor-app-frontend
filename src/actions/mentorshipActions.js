@@ -37,7 +37,6 @@ export function requestMentorship(data) {
 				return response.json();
 			})
 			.then((json) => {
-				console.log('this is json in requestMentoship', json);
 				dispatch(requestMentorshipSuccess(json));
 				return json;
 			})
@@ -57,7 +56,6 @@ export function fetchMentorships() {
 			.then(handleErrors)
 			.then((res) => res.json())
 			.then((json) => {
-				console.log('the MENTORSHIPS ', json);
 				dispatch(fetchMentorShipsSuccess(json));
 				return json;
 			})

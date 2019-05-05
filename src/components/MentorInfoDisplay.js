@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
-import Row from 'react-bootstrap/Row';
+// import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 
-import Card from 'react-bootstrap/Card';
+// import Card from 'react-bootstrap/Card';
 import { connect } from 'react-redux';
 import { makingMentorProfile } from '../actions/userActions';
 import Alert from 'react-bootstrap/Alert';
@@ -19,11 +19,7 @@ class MentorInfoDisplay extends Component {
 		};
 	}
 
-	//TODO: RENDER THE CATEGORIES IN A LIST, FORMAT DATE, Make it so that mentees don't see the accept button. if mentee, show pending until accepted?
-
-	// componentDidMount() {
-	// 	this.props.dispatch(fetchCategories());
-	// }
+	//TODO: RENDER THE CATEGORIES IN A LIST and store id so when mentorship is created it has that category
 
 	handleChange = (event) => {
 		const { name, value } = event.target;

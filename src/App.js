@@ -12,6 +12,7 @@ import { connect } from 'react-redux';
 import { getUser } from './actions/authActions';
 import Logout from './components/Logout';
 import MentorshipsDisplay from './components/MentorshipsDisplay';
+import ChatContainer from './containers/ChatContainer';
 
 class App extends Component {
 	componentDidMount = () => {

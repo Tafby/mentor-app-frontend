@@ -12,8 +12,8 @@ class SearchUsersPage extends Component {
 		return this.props.dispatch(fetchMentors());
 	}
 
-	isUser() {
-		if (this.props.currentUser.id === this.props.user.id) {
+	isUser(mentor) {
+		if (this.props.currentUser.id === mentor.id) {
 			return true;
 		}
 		return false;
@@ -32,7 +32,11 @@ class SearchUsersPage extends Component {
 				{mentors.length > 0 ? (
 					mentors.map((mentor) => {
 						if (mentor.mentor_profiles.length > 0) {
-							return <MentorCardOnSearch key={mentor.id} mentor={mentor} />;
+							{
+								return this.isUser(mentor) ? null : (
+									<MentorCardOnSearch key={mentor.id} mentor={mentor} />
+								);
+							}
 						}
 					})
 				) : null}

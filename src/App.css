@@ -35,3 +35,14 @@
 	background-color: purple;
 	color: white;
 }
+
+body {
+	font-family: 'Montserrat', sans-serif;
+}
+.message-list {
+	overflow-y: scroll;
+	max-height: 15rem;
+}
+.convo-view {
+	height: 20rem;
+}
