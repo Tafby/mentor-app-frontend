@@ -9,7 +9,10 @@ export default class ConversationView extends Component {
 				{console.log('Conversation view rendered:', this.props.conversation)}
 				{this.props.conversation ? (
 					<div>
-						<MessageList messages={this.props.conversation.messages} />
+						<MessageList
+							currentUser={this.props.currentUser}
+							messages={this.props.conversation.messages}
+						/>{' '}
 						<NewMessageForm
 							createMessage={this.props.createMessage}
 							conversation={this.props.conversation}

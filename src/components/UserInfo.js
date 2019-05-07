@@ -3,17 +3,17 @@ import { connect } from 'react-redux';
 import updateProfile from '../actions/userActions';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
-import Col from 'react-bootstrap/Col';
-import Row from 'react-bootstrap/Row';
-import Alert from 'react-bootstrap/Alert';
+import toaster from 'toasted-notes';
+
 class UserInfo extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			first_name: '',
-			last_name: '',
-			location: '',
-			interests: ''
+			first_name: this.props.currentUser.first_name,
+			last_name: this.props.currentUser.last_name,
+			location: this.props.currentUser.location,
+			interests: this.props.currentUser.interests,
+			picture: this.props.currentUser.picture
 		};
 	}
 
@@ -25,21 +25,25 @@ class UserInfo extends Component {
 	};
 
 	handleSubmit = (event) => {
+		console.log('IN HANDLE SUBMIT', this.state);
 		event.preventDefault();
 		this.props.updateProfile(this.state, this.props.currentUser);
+		// alert('Changes sent!');
+		toaster.notify('Profile Updated', {
+			duration: 2000
+		});
 	};
 
 	render() {
 		return (
 			<Form controlId="exampleForm.ControlInput1" onSubmit={this.handleSubmit}>
-				<p>Fill out your profile</p>
 				<Form.Label>First Name</Form.Label>
 				<Form.Control
 					type="text"
 					name="first_name"
 					value={this.state.first_name}
 					onChange={this.handleChange}
-					defaultValue={this.props.currentUser.first_name}
+					placeholder="First Name"
 				/>
 				<Form.Label>Last Name</Form.Label>
 				<Form.Control
@@ -47,7 +51,7 @@ class UserInfo extends Component {
 					name="last_name"
 					onChange={this.handleChange}
 					type="text"
-					defaultValue={this.props.currentUser.last_name}
+					placeholder="Last Name"
 				/>
 				<Form.Label>Location</Form.Label>
 				<Form.Control
@@ -55,7 +59,7 @@ class UserInfo extends Component {
 					name="location"
 					onChange={this.handleChange}
 					type="text"
-					defaultValue={this.props.currentUser.location}
+					placeholder="Where are you located?"
 				/>
 				<Form.Label>About me</Form.Label>
 				<Form.Control
@@ -63,8 +67,17 @@ class UserInfo extends Component {
 					name="interests"
 					onChange={this.handleChange}
 					type="textarea"
-					defaultValue={this.props.currentUser.interests}
+					placeholder="Add your interests here"
 				/>
+				<Form.Label>Your Picture</Form.Label>
+				<Form.Control
+					value={this.state.picture}
+					name="picture"
+					onChange={this.handleChange}
+					type="text"
+					placeholder="Add Headshot URL Here"
+				/>
+				<br />
 				<Button type="submit" placeholder="Save Changes">
 					Save Changes
 				</Button>

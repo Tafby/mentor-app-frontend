@@ -101,10 +101,14 @@ export default function updateProfile(data, currentUser) {
 					first_name: data.first_name,
 					last_name: data.last_name,
 					location: data.location,
-					interests: data.interests
+					interests: data.interests,
+					picture: data.picture
 				}
 			})
 		})
+			.then((response) => {
+				console.log(response.json());
+			})
 			.then(handleErrors)
 			.then((response) => {
 				return response.json();

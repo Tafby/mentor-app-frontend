@@ -10,7 +10,8 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Button from 'react-bootstrap/Button';
 import ActionCable from 'actioncable';
-export default class ChatContainer extends React.Component {
+import { connect } from 'react-redux';
+class ChatContainer extends React.Component {
 	static propTypes = {
 		message: PropTypes.string
 	};
@@ -43,7 +44,7 @@ export default class ChatContainer extends React.Component {
 		);
 	};
 
-	createMessage = (conversation_id, body) => {
+	createMessage = (conversation_id, body, callback) => {
 		fetch(`${API_ROOT}/conversations/${conversation_id}/messages`, {
 			method: 'POST',
 			headers: {
@@ -53,11 +54,11 @@ export default class ChatContainer extends React.Component {
 			body: JSON.stringify({
 				body: body
 			})
-		})
-			.then((response) => {
-				return response;
-			})
-			.then((json) => {});
+		}).then((response) => {
+			if (response.ok) {
+				callback(response);
+			}
+		});
 	};
 
 	fetchConversations = () => {
@@ -141,6 +142,7 @@ export default class ChatContainer extends React.Component {
 
 							<Col md={8}>
 								<ConversationView
+									currentUser={this.props.currentUser}
 									createMessage={this.createMessage}
 									conversation={this.getSelectedConversation()}
 								/>
@@ -153,3 +155,8 @@ export default class ChatContainer extends React.Component {
 		);
 	}
 }
+
+const mapStateToProps = (state) => ({
+	currentUser: state.auth.currentUser
+});
+export default connect(mapStateToProps)(ChatContainer);

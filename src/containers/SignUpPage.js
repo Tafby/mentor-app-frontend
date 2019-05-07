@@ -40,7 +40,7 @@ class SignUpPage extends Component {
 
 	render() {
 		if (this.props.isAuthenticated) {
-			return <Redirect to={`/profile/${this.props.currentUser.id}`} />;
+			return <Redirect to="/edit-profile" />;
 		}
 
 		return (

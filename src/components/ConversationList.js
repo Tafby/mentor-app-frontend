@@ -1,15 +1,24 @@
 import React, { Component } from 'react';
 import ListGroup from 'react-bootstrap/ListGroup';
 import Button from 'react-bootstrap/Button';
+import { connect } from 'react-redux';
 
-export default class ConversationList extends Component {
+class ConversationList extends Component {
+	isUser() {
+		console.log(this.props.currentUser);
+
+		if (this.props.currentUser.id === this.props.user.id) {
+			return true;
+		}
+		return false;
+	}
 	render() {
 		return (
 			<div>
 				{this.props.conversations.map((conversation) => {
 					return (
 						<div key={conversation.id}>
-							Conversation:
+							Your Conversations:
 							<ListGroup defaultActiveKey="#link1">
 								<ListGroup.Item onClick={() => this.props.selectConversation(conversation)} action>
 									{conversation.id}
@@ -22,3 +31,8 @@ export default class ConversationList extends Component {
 		);
 	}
 }
+
+const mapStateToProps = (state) => ({
+	currentUser: state.auth.currentUser
+});
+export default connect(mapStateToProps)(ConversationList);

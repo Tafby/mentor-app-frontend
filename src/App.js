@@ -13,6 +13,7 @@ import { getUser } from './actions/authActions';
 import Logout from './components/Logout';
 import MentorshipsDisplay from './components/MentorshipsDisplay';
 import ChatContainer from './containers/ChatContainer';
+import 'toasted-notes/src/styles.css';
 
 class App extends Component {
 	componentDidMount = () => {

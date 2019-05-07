@@ -3,7 +3,7 @@ import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 // import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
-
+import toaster from 'toasted-notes';
 // import Card from 'react-bootstrap/Card';
 import { connect } from 'react-redux';
 import { makingMentorProfile } from '../actions/userActions';
@@ -31,7 +31,9 @@ class MentorInfoDisplay extends Component {
 	handleSubmit = (event) => {
 		event.preventDefault();
 		this.props.makingMentorProfile(this.state);
-		return <Alert variant={'success'}>Added Mentor Profile Successfully </Alert>;
+		toaster.notify('Mentor Profile Activated', {
+			duration: 2000
+		});
 	};
 	render() {
 		console.log('CATEGORIES', this.props.categories);
@@ -62,7 +64,7 @@ class MentorInfoDisplay extends Component {
 						rows="3"
 						value={this.state.description}
 						onChange={this.handleChange}
-						placeholder="Description"
+						placeholder="Description of the mentorship you are offering"
 						name="description"
 						type="description"
 					/>
@@ -76,7 +78,6 @@ class MentorInfoDisplay extends Component {
 	}
 }
 const mapStateToProps = (state) => {
-	// console.log('mapStateToProps with state:', state);
 	return {
 		mentor: state.createMentor.mentor,
 		errors: state.createMentor.errors,

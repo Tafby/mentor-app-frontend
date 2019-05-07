@@ -10,6 +10,13 @@ export default class NewMessageForm extends Component {
 			body: ''
 		};
 	}
+
+	messageInput = React.createRef();
+
+	componentDidUpdate() {
+		this.messageInput.current.focus();
+	}
+
 	handleChange = (event) => {
 		const { name, value } = event.target;
 		this.setState({
@@ -18,13 +25,18 @@ export default class NewMessageForm extends Component {
 	};
 	handleSubmit = (event) => {
 		event.preventDefault();
-		this.props.createMessage(this.props.conversation.id, this.state.body);
+		this.props.createMessage(this.props.conversation.id, this.state.body, this.clearMessage);
+	};
+
+	clearMessage = () => {
+		this.setState({ body: '' });
 	};
 	render() {
 		return (
 			<Form onSubmit={this.handleSubmit}>
 				<InputGroup className="mb-3">
 					<FormControl
+						ref={this.messageInput}
 						aria-label="Default"
 						aria-describedby="inputGroup-sizing-default"
 						placeholder="Enter Message Here"

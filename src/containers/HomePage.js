@@ -7,12 +7,12 @@ class HomePage extends Component {
 	render() {
 		return (
 			<div>
-				<Jumbotron
+				<div
+					className="jumbotron"
 					style={{
 						textAlign: 'center',
 						backgroundColor: '#A1E8CC',
-						color: '#495159',
-						fontFamily: 'Montserrat'
+						color: 'black'
 					}}
 				>
 					<h1>Welcome!</h1>
@@ -22,7 +22,7 @@ class HomePage extends Component {
 							<Button style={{ borderColor: '#FAC9B8', backgroundColor: '#FAC9B8' }}>Sign Up Now!</Button>
 						</Link>
 					</p>
-				</Jumbotron>
+				</div>
 			</div>
 		);
 	}

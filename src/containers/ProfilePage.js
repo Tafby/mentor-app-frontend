@@ -7,6 +7,7 @@ import { fetchUser } from '../actions/userActions';
 import { requestMentorship } from '../actions/mentorshipActions';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
+import toaster from 'toasted-notes';
 
 class ProfilePage extends Component {
 	componentDidMount() {
@@ -15,6 +16,9 @@ class ProfilePage extends Component {
 
 	handleClick = () => {
 		console.log('IN MENTOR CARD', this.props.user.id, 'CURRENT USER', this.props.currentUser.id);
+		toaster.notify('Mentorship Requested!', {
+			duration: 2000
+		});
 		return this.props.requestMentorship(this.props.user.id);
 	};
 
@@ -27,31 +31,34 @@ class ProfilePage extends Component {
 		return false;
 	}
 
-	// isPending = (mentorship) => {
-	// 	if (mentorship.status === 'Pending') {
-	// 		return true;
-	// 	}
-	// };
 	render() {
 		return (
-			<div>
+			<div className="profile-div">
 				<Row>
 					<Col />
 					<Col>
-						<Card border="info" style={{ width: '30rem' }}>
+						<Card border="info" className="my-profile-pic">
 							{this.isUser() ? <Link to="/edit-profile">Edit Profile</Link> : null}
-							{/* <Card.Img variant="top" src="holder.js/100px180" /> */}
+							<Card.Img className="profile-pic" variant="top" src={this.props.user.picture} />
 							<Card.Body>
-								<Card.Title style={{ textAlign: 'center' }}>
-									{this.props.user.first_name} {this.props.user.last_name}
-								</Card.Title>
-								<Card.Text style={{ textAlign: 'center' }}>
-									Location: {this.props.user.location}
-									<br />
-									About Me: {this.props.user.interests}
-								</Card.Text>
+								<Card>
+									<Card.Title style={{ textAlign: 'center' }}>
+										{this.props.user.first_name} {this.props.user.last_name}
+									</Card.Title>
+									<Card.Text style={{ textAlign: 'center' }}>
+										Location: {this.props.user.location}
+										<br />
+										About Me: {this.props.user.interests}
+									</Card.Text>
+								</Card>
+								<br />
 								{this.isUser() ? null : (
-									<Button onClick={this.handleClick} variant="primary">
+									<Button
+										variant="info"
+										className="button-center"
+										onClick={this.handleClick}
+										variant="primary"
+									>
 										Request Mentorship
 									</Button>
 								)}
