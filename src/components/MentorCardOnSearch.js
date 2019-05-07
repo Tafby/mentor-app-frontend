@@ -15,33 +15,65 @@ class MentorCardOnSearch extends Component {
 		this.props.fetchUser(id);
 	};
 
-	//TODO: Fix rows and cols
-
+	mentorProfileInfo = () => {
+		if (this.props.mentor.mentor_profiles > 0) {
+			this.props.mentor.mentor_profiles.map((mentorProfile) => {
+				console.log('category names', mentorProfile.category.name);
+				return mentorProfile.category.name;
+			});
+		}
+	};
 	render() {
 		return (
-			<div className="card-deck">
-				<div className="card">
-					<div className="card-body">
-						<div className="card-title">
-							{this.props.mentor.first_name} {this.props.mentor.last_name}
-						</div>
-						<Card.Img className="profile-pic" variant="top" src={this.props.mentor.picture} />
-						<Card.Text>
-							Description of Mentorship: {this.props.mentor.interests} | location:{' '}
-							{this.props.mentor.location}
-						</Card.Text>
-						<Link to={`profile/${this.props.mentor.id}`}>
-							<Button
-								style={{ backgroundColor: 'lightblue', color: 'white', textAlign: 'center' }}
-								variant="flat"
-								onClick={() => this.handleClick(this.props.mentor.id)}
-							>
-								View Profile
-							</Button>
-						</Link>
-					</div>
-				</div>
-			</div>
+			<Container>
+				<Card>
+					<Card.Body>
+						<Row />
+						<Row>
+							<Col>
+								<Card.Title>
+									{this.props.mentor.first_name} {this.props.mentor.last_name}
+								</Card.Title>
+								<Card.Img className="profile-pic" variant="top" src={this.props.mentor.picture} />
+							</Col>
+							<Col>
+								<Card.Text>
+									<b>Description of Mentorship:</b> {this.props.mentor.interests}
+								</Card.Text>
+								<Card.Text>
+									<b>Location:</b> {this.props.mentor.location}
+								</Card.Text>
+								<Card.Text>
+									<b>Numer of Days They can Typically Meet:</b>{' '}
+									{this.props.mentor.mentor_profiles[0].days_can_meet}
+								</Card.Text>
+								<Card.Text>
+									<b>Years Mentoring:</b> {this.props.mentor.mentor_profiles[0].years_mentoring}
+								</Card.Text>
+							</Col>
+							<Col />
+						</Row>
+						<Row>
+							<Col>
+								<Link to={`profile/${this.props.mentor.id}`}>
+									<Button
+										style={{ backgroundColor: 'lightblue', color: 'white', textAlign: 'center' }}
+										variant="flat"
+										onClick={() => this.handleClick(this.props.mentor.id)}
+									>
+										View Profile
+									</Button>
+								</Link>
+							</Col>
+
+							<Col>
+								<small>Also mentors in {this.mentorProfileInfo()}</small>
+							</Col>
+							<Col />
+						</Row>
+					</Card.Body>
+				</Card>
+			</Container>
 		);
 	}
 }

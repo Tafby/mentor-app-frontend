@@ -15,7 +15,6 @@ export default function mentorReducer(state = initialState, action) {
 				error: null
 			};
 		case FETCH_MENTORS_SUCCESS:
-			console.log('fetch mentors success', action.payload);
 			return {
 				...state,
 				loading: false,

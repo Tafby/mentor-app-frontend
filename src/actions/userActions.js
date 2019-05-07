@@ -43,7 +43,6 @@ export function fetchMentors() {
 			.then(handleErrors)
 			.then((res) => res.json())
 			.then((json) => {
-				console.log('the fetchmentors ', json);
 				dispatch(fetchMentorsSuccess(json));
 				return json;
 			})
@@ -68,9 +67,11 @@ export function makingMentorProfile(mentorInfo) {
 				Authorization: `Bearer ${localStorage.token}`
 			},
 			body: JSON.stringify({
-				category_id: 1,
+				category_id: mentorInfo.category,
 				description: mentorInfo.description,
-				active: true
+				active: true,
+				days_can_meet: mentorInfo.days_can_meet,
+				years_mentoring: mentorInfo.years_mentoring
 			})
 		})
 			.then(handleErrors)
@@ -78,7 +79,6 @@ export function makingMentorProfile(mentorInfo) {
 				return response.json();
 			})
 			.then((json) => {
-				console.log(json);
 				dispatch(createMentorsSuccess(json));
 				return json;
 			})
@@ -87,7 +87,6 @@ export function makingMentorProfile(mentorInfo) {
 }
 
 export default function updateProfile(data, currentUser) {
-	console.log('This is data inside updateProfile function', data);
 	return (dispatch) => {
 		dispatch(updateProfileBegin());
 		return fetch(`http://localhost:3000/users/${currentUser.id}`, {
@@ -106,15 +105,12 @@ export default function updateProfile(data, currentUser) {
 				}
 			})
 		})
-			.then((response) => {
-				console.log(response.json());
-			})
+			.then((response) => {})
 			.then(handleErrors)
 			.then((response) => {
 				return response.json();
 			})
 			.then((json) => {
-				console.log('this is json in updateprofile', json);
 				dispatch(updateProfileSuccess(json));
 				return json;
 			})

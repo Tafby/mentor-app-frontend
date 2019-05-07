@@ -2,8 +2,6 @@ import React, { Component } from 'react';
 import { fetchMentors } from '../actions/userActions';
 import { connect } from 'react-redux';
 import MentorCardOnSearch from '../components/MentorCardOnSearch';
-import CardGroup from 'react-bootstrap/CardGroup';
-import Card from 'react-bootstrap/Card';
 
 // TODO: Should fetchMentors actually be fetchMentorships and make a request to "/mentorships"?
 // Note: If so, the mentorship serializer in Rails will need to return mentor details.
@@ -11,12 +9,10 @@ import Card from 'react-bootstrap/Card';
 
 class SearchUsersPage extends Component {
 	componentDidMount() {
-		console.log(this.props.mentors);
 		return this.props.dispatch(fetchMentors());
 	}
 
 	isUser(mentor) {
-		console.log('MENTOR', this.props.mentor);
 		if (this.props.currentUser.id === mentor.id) {
 			return true;
 		}
@@ -32,7 +28,7 @@ class SearchUsersPage extends Component {
 			return <div>Loading...</div>;
 		}
 		return (
-			<React.Fragment>
+			<div>
 				{mentors.length > 0 ? (
 					mentors.map((mentor) => {
 						if (mentor.mentor_profiles.length > 0) {
@@ -44,7 +40,7 @@ class SearchUsersPage extends Component {
 						}
 					})
 				) : null}
-			</React.Fragment>
+			</div>
 		);
 	}
 }

@@ -3,8 +3,6 @@ import MentorInfoDisplay from '../components/MentorInfoDisplay';
 import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
 import Container from 'react-bootstrap/Container';
-import Card from 'react-bootstrap/Card';
-import MentorshipsDisplay from '../components/MentorshipsDisplay';
 
 import UserInfo from '../components/UserInfo';
 

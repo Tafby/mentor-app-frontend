@@ -18,7 +18,6 @@ export default function updateReducer(state = initialState, action) {
 				error: null
 			};
 		case UPDATE_PROFILE_SUCCESS:
-			console.log('Update profile success', action.payload);
 			return {
 				...state,
 				loading: false,

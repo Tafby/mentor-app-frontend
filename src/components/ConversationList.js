@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import ListGroup from 'react-bootstrap/ListGroup';
-import Button from 'react-bootstrap/Button';
 import { connect } from 'react-redux';
 
 class ConversationList extends Component {

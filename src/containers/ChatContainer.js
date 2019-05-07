@@ -1,6 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { ActionCableConsumer } from 'react-actioncable-provider';
 import { API_ROOT } from '../constants/messageConstants';
 import ConversationView from '../components/ConversationView';
 import ConversationList from '../components/ConversationList';
@@ -8,7 +7,6 @@ import Modal from 'react-bootstrap/Modal';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
-import Button from 'react-bootstrap/Button';
 import ActionCable from 'actioncable';
 import { connect } from 'react-redux';
 class ChatContainer extends React.Component {
@@ -32,7 +30,6 @@ class ChatContainer extends React.Component {
 	};
 
 	subscribeToConversation = (conversation) => {
-		console.log('Subscribing to conversation:', conversation.id);
 		this.state.cable.subscriptions.create(
 			{
 				channel: 'ChatChannel',
@@ -86,7 +83,6 @@ class ChatContainer extends React.Component {
 	};
 
 	handleReceived = (message) => {
-		console.log('Received message:', message);
 		this.setState((prevState, props) => {
 			return {
 				conversations: prevState.conversations.map((convo) => {
@@ -110,7 +106,6 @@ class ChatContainer extends React.Component {
 		let selectedConvo = null;
 		this.state.conversations.forEach((convo) => {
 			if (convo.id === this.state.selectedConversationId) {
-				console.log('Found selected conversation', convo);
 				selectedConvo = convo;
 			}
 		});
@@ -133,7 +128,6 @@ class ChatContainer extends React.Component {
 					<Container>
 						<Row className="show-grid">
 							<Col md={4}>
-								{console.log('ChatContainer Rendered')}
 								<ConversationList
 									conversations={this.state.conversations}
 									selectConversation={this.selectConversation}

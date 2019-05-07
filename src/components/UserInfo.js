@@ -25,10 +25,8 @@ class UserInfo extends Component {
 	};
 
 	handleSubmit = (event) => {
-		console.log('IN HANDLE SUBMIT', this.state);
 		event.preventDefault();
 		this.props.updateProfile(this.state, this.props.currentUser);
-		// alert('Changes sent!');
 		toaster.notify('Profile Updated', {
 			duration: 2000
 		});
@@ -36,7 +34,7 @@ class UserInfo extends Component {
 
 	render() {
 		return (
-			<Form controlId="exampleForm.ControlInput1" onSubmit={this.handleSubmit}>
+			<Form onSubmit={this.handleSubmit}>
 				<Form.Label>First Name</Form.Label>
 				<Form.Control
 					type="text"

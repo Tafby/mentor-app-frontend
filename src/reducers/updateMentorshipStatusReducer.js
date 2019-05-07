@@ -9,20 +9,6 @@ const initialState = {
 export default function updateMentorshipStatusReducer(state = initialState, action) {
 	switch (action.type) {
 		case UPDATE_MENTORSHIP_STATUS_SUCCESS:
-			console.log('fetch mentorships success', action.payload);
-			// return array.map((item, index) => {
-			//   if (index !== action.index) {
-			//     // This isn't the item we care about - keep it as-is
-			//     return item
-			//   }
-
-			//   // Otherwise, this is the one we want - return an updated value
-			//   return {
-			//     ...item,
-			//     ...action.item
-			//   }
-			// })
-
 			return {
 				...state,
 				loading: false,
