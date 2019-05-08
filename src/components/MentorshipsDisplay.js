@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import ListGroup from 'react-bootstrap/ListGroup';
-// import Button from 'react-bootstrap/Button';
 import { fetchMentorships, updateMentorshipStatus } from '../actions/mentorshipActions';
 import Button from 'react-bootstrap/Button';
 import toaster from 'toasted-notes';
@@ -10,8 +9,6 @@ import Col from 'react-bootstrap/Col';
 
 class MentorshipsDisplay extends Component {
 	//TODO: Create a link to the mentee's profile so the mentor can deteremine if they want to accept
-	//TODO: Add a reject button that will remove the mentorship and not allow that mentee to request again
-	//TODO: Allow user to only request mentorship one time.
 	componentDidMount() {
 		this.props.fetchMentorships();
 	}

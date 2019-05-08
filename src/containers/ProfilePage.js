@@ -23,6 +23,7 @@ class ProfilePage extends Component {
 	};
 
 	isUser() {
+		console.log(this.props.currentUser);
 		if (this.props.currentUser.id === this.props.user.id) {
 			return true;
 		}
@@ -69,11 +70,16 @@ class ProfilePage extends Component {
 							<Card.Text>
 								<b>About Me</b> <p>{this.props.user.interests}</p>
 							</Card.Text>
+							<Card.Text>
+								<b>LinkedIn</b> <p>MyLinkedIn</p>
+							</Card.Text>
 						</Col>
 						<Col />
 					</Row>
 				</Card.Body>
-				{this.isUser() ? <MentorshipsDisplay /> : null}
+				<Row>
+					<Col>{this.isUser() ? <MentorshipsDisplay /> : null}</Col>
+				</Row>
 			</Card>
 		);
 	}

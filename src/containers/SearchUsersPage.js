@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { fetchMentors } from '../actions/userActions';
 import { connect } from 'react-redux';
 import MentorCardOnSearch from '../components/MentorCardOnSearch';
-import Form from 'react-bootstrap/Form';
 import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
 import { fetchCategories } from '../actions/categoryActions';

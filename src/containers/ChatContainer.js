@@ -141,6 +141,7 @@ class ChatContainer extends React.Component {
 									conversation={this.getSelectedConversation()}
 								/>
 							</Col>
+							<Col />
 						</Row>
 					</Container>
 				</Modal.Body>
