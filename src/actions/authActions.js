@@ -61,7 +61,6 @@ export const signup = (user) => {
 };
 
 export const authenticate = (credentials) => {
-	// console.log('credentials inside authenticate function', credentials);
 	return (dispatch) => {
 		dispatch(authRequest());
 		return fetch(`http://localhost:3000/user_token`, {
@@ -85,7 +84,7 @@ export const authenticate = (credentials) => {
 			})
 			.catch((errors) => {
 				localStorage.clear();
-				console.log('Dispatching authFailure with errors:', errors);
+
 				dispatch(authFailure(errors));
 			});
 	};
@@ -108,7 +107,6 @@ export const getUser = (token) => {
 			})
 			.then((response) => response.json())
 			.then((user) => {
-				// console.log('Dispatching authSuccess with user:', user, 'and token:', localStorage.token);
 				dispatch(authSuccess(user, localStorage.token));
 			})
 			.catch((errors) => {

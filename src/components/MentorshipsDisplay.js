@@ -31,47 +31,39 @@ class MentorshipsDisplay extends Component {
 
 	render() {
 		return (
-			<Row>
-				<Col xs={3} />
-				<Col m={6}>
-					<ListGroup>
-						{this.props.mentorships.map((mentorship) => {
-							let dateToUse = new Date(mentorship.created_at);
-							return (
-								<ListGroup.Item style={{ borderColor: '#495159', fontFamily: 'Montserrat' }}>
-									{this.isUser(mentorship) ? (
-										`${mentorship.mentor.first_name} ${mentorship.mentor.last_name}`
-									) : (
-										`${mentorship.mentee.first_name} ${mentorship.mentee.last_name}`
-									)}
-									<br />
-									{mentorship.status === 'Accepted' ? (
-										<small>Mentorship started on: {dateToUse.toDateString()}</small>
-									) : mentorship.status === 'Rejected' ? null : this.isUser(mentorship) ? (
-										<small>Pending</small>
-									) : (
-										<div>
-											<Button
-												onClick={() => this.handleClick(mentorship.id, 'Accepted')}
-												size="sm"
-											>
-												Accept
-											</Button>{' '}
-											<Button
-												onClick={() => this.handleClick(mentorship.id, 'Rejected')}
-												size="sm"
-											>
-												Reject
-											</Button>
-										</div>
-									)}
-								</ListGroup.Item>
-							);
-						})}
-					</ListGroup>
-				</Col>
-				<Col xs={3} />
-			</Row>
+			<ListGroup>
+				<h4 className="mentorships-title">My Mentorships</h4>
+				{this.props.mentorships.map((mentorship) => {
+					let dateToUse = new Date(mentorship.created_at);
+					return (
+						<ListGroup.Item>
+							Your Mentorship With: {' '}
+							{this.isUser(mentorship) ? (
+								`${mentorship.mentor.first_name} ${mentorship.mentor.last_name}`
+							) : (
+								`${mentorship.mentee.first_name} ${mentorship.mentee.last_name}`
+							)}
+							<br />
+							<br />
+							<p>Cateogry: {mentorship.category.name}</p>
+							{mentorship.status === 'Accepted' ? (
+								<small>Mentorship started on: {dateToUse.toDateString()}</small>
+							) : mentorship.status === 'Rejected' ? null : this.isUser(mentorship) ? (
+								<small>Pending</small>
+							) : (
+								<div>
+									<Button onClick={() => this.handleClick(mentorship.id, 'Accepted')} size="sm">
+										Accept
+									</Button>{' '}
+									<Button onClick={() => this.handleClick(mentorship.id, 'Rejected')} size="sm">
+										Reject
+									</Button>
+								</div>
+							)}
+						</ListGroup.Item>
+					);
+				})}
+			</ListGroup>
 		);
 	}
 }

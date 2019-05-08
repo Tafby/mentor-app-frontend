@@ -13,6 +13,7 @@ import { getUser } from './actions/authActions';
 import Logout from './components/Logout';
 import MentorshipsDisplay from './components/MentorshipsDisplay';
 import 'toasted-notes/src/styles.css';
+import Container from 'react-bootstrap/Container';
 
 class App extends Component {
 	componentDidMount = () => {
@@ -26,13 +27,15 @@ class App extends Component {
 			<Router>
 				<SiteNavbar currentUser={this.props.currentUser} isAuthenticated={this.props.isAuthenticated} />
 				<Route path="/" exact component={HomePage} />
-				<Route path="/profile/:id" exact component={ProfilePage} />
-				<Route path="/edit-profile" exact component={EditProfilePage} />
-				<Route path="/search" exact component={SearchUsersPage} />
-				<Route path="/signup" exact component={SignUpPage} />
-				<Route path="/login" exact component={LoginPage} />
-				<Route path="/logout" exact component={Logout} />
-				<Route path="/mentorships" exact component={MentorshipsDisplay} />
+				<Container style={{ fontFamily: 'Montserrat' }}>
+					<Route path="/profile/:id" exact component={ProfilePage} />
+					<Route path="/edit-profile" exact component={EditProfilePage} />
+					<Route path="/search" exact component={SearchUsersPage} />
+					<Route path="/signup" exact component={SignUpPage} />
+					<Route path="/login" exact component={LoginPage} />
+					<Route path="/logout" exact component={Logout} />
+					<Route path="/mentorships" exact component={MentorshipsDisplay} />
+				</Container>
 			</Router>
 		);
 	}

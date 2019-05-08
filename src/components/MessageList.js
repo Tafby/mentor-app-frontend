@@ -16,7 +16,6 @@ export default class MessageList extends Component {
 	render() {
 		return (
 			<div className="message-list">
-				{console.log('MessageList rendered', this.props.messages)}
 				{this.props.messages.map((message) => {
 					return <Message currentUser={this.props.currentUser} key={message.id} message={message} />;
 				})}

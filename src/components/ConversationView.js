@@ -6,7 +6,6 @@ export default class ConversationView extends Component {
 	render() {
 		return (
 			<div className="convo-view">
-				{console.log('Conversation view rendered:', this.props.conversation)}
 				{this.props.conversation ? (
 					<div>
 						<MessageList

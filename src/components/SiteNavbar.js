@@ -3,8 +3,6 @@ import Navbar from 'react-bootstrap/Navbar';
 import Nav from 'react-bootstrap/Nav';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
-// import Modal from 'react-bootstrap/Modal';
-// import ModalDialog from 'react-bootstrap/ModalDialog';
 import ChatContainer from '../containers/ChatContainer';
 
 class SiteNavbar extends Component {
@@ -32,10 +30,10 @@ class SiteNavbar extends Component {
 						<Nav className="mr-auto">
 							<Nav.Link href="/search">Search</Nav.Link>
 							<Nav.Link href={`/profile/${this.props.currentUser.id}`}>My Profile</Nav.Link>
-							<Nav.Link href={`/mentorships`}>My Mentorships</Nav.Link>
-							<Button variant="info" onClick={this.modalOpen}>
+							{/* <Nav.Link href={`/mentorships`}>My Mentorships</Nav.Link> */}
+							<Nav.Link variant="info" onClick={this.modalOpen}>
 								My Messages
-							</Button>
+							</Nav.Link>
 
 							<ChatContainer show={this.state.show} onHide={this.modalClose} />
 						</Nav>

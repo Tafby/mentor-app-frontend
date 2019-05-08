@@ -8,14 +8,14 @@ import { requestMentorship } from '../actions/mentorshipActions';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import toaster from 'toasted-notes';
-
+import MentorshipsDisplay from '../components/MentorshipsDisplay';
+//TODO: SHOW ONLY USERS MENTORSHIPS. FINISH SEARCH BAR. MAKE IT SO NEW CHAT IS RENDERED WHEN MENTORSHIP IS ACCEPTED
 class ProfilePage extends Component {
 	componentDidMount() {
 		return this.props.fetchUser(this.props.match.params.id);
 	}
 
 	handleClick = () => {
-		console.log('IN MENTOR CARD', this.props.user.id, 'CURRENT USER', this.props.currentUser.id);
 		toaster.notify('Mentorship Requested!', {
 			duration: 2000
 		});
@@ -23,51 +23,58 @@ class ProfilePage extends Component {
 	};
 
 	isUser() {
-		console.log(this.props.currentUser);
-
 		if (this.props.currentUser.id === this.props.user.id) {
 			return true;
 		}
 		return false;
 	}
 
+	// isUserMentorships() {
+	// 	let msArray = [];
+	// 	if (this.props.currentUser.id === this.props.user.id) {
+	// 		this.props.currentUser.mentorships.forEach((m) => {
+	// 			console.log('m', m);
+	// 			msArray.push(m);
+	// 		});
+	// 	}
+	// }
+
 	render() {
 		return (
-			<div className="profile-div">
-				<Row>
-					<Col />
-					<Col>
-						<Card border="info" className="my-profile-pic">
-							{this.isUser() ? <Link to="/edit-profile">Edit Profile</Link> : null}
+			<Card className="mentor-card">
+				<Card.Body>
+					<Row>
+						{this.isUser() ? <Link to="/edit-profile">Edit Profile</Link> : null}
+						<Col>
+							<h3>
+								{this.props.user.first_name} {this.props.user.last_name}
+							</h3>
 							<Card.Img className="profile-pic" variant="top" src={this.props.user.picture} />
-							<Card.Body>
-								<Card>
-									<Card.Title style={{ textAlign: 'center' }}>
-										{this.props.user.first_name} {this.props.user.last_name}
-									</Card.Title>
-									<Card.Text style={{ textAlign: 'center' }}>
-										Location: {this.props.user.location}
-										<br />
-										About Me: {this.props.user.interests}
-									</Card.Text>
-								</Card>
-								<br />
-								{this.isUser() ? null : (
-									<Button
-										variant="info"
-										className="button-center"
-										onClick={this.handleClick}
-										variant="primary"
-									>
-										Request Mentorship
-									</Button>
-								)}
-							</Card.Body>
-						</Card>
-					</Col>
-					<Col />
-				</Row>
-			</div>
+							{this.isUser() ? null : (
+								<Button
+									className="request-mentorship-button"
+									variant="info"
+									onClick={this.handleClick}
+									variant="primary"
+								>
+									Request Mentorship
+								</Button>
+							)}
+						</Col>
+						<Col>
+							<Card.Text>
+								<b>Location</b> {this.props.user.location}
+							</Card.Text>
+							<br />
+							<Card.Text>
+								<b>About Me</b> <p>{this.props.user.interests}</p>
+							</Card.Text>
+						</Col>
+						<Col />
+					</Row>
+				</Card.Body>
+				{this.isUser() ? <MentorshipsDisplay /> : null}
+			</Card>
 		);
 	}
 }

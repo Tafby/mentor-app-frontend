@@ -9,7 +9,6 @@ const initialState = {
 export default function categoriesReducer(state = initialState, action) {
 	switch (action.type) {
 		case FETCH_CATEGORIES_SUCCESS:
-			console.log('fetch Categories success', action.payload);
 			return {
 				...state,
 				loading: false,

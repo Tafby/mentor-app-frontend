@@ -16,6 +16,7 @@ class HomePage extends Component {
 				>
 					<h1>Welcome!</h1>
 					<p>Looking for a mentor? You've come to the right place!</p>
+
 					<p>
 						<Link to="/signup">
 							<Button style={{ borderColor: '#FAC9B8', backgroundColor: '#FAC9B8' }}>Sign Up Now!</Button>

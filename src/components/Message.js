@@ -13,9 +13,6 @@ export default class Message extends Component {
 	};
 	render() {
 		return (
-			//if this.props.currentUser.id === message.user_id
-			//then add a classname to the div to make show up to the right side
-
 			<div className="message-wrapper">
 				<div className={this.getMessageClasses()}>
 					{`${this.props.message.full_name}: 

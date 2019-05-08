@@ -23,7 +23,6 @@ export function fetchCategories() {
 			.then(handleErrors)
 			.then((res) => res.json())
 			.then((json) => {
-				console.log('the categories ', json);
 				dispatch(fetchCategoriesSuccess(json));
 				return json;
 			})
